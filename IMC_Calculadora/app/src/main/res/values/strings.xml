@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">IMC_Calculadora</string>
+    <string name="resultado_imc_formatado">Nome: %1$s\nIdade: %2$d\nPeso: %3$.2f\nAltura:
+        %4$.2f\nIMC: %5$.2f\nClassificação: %6$s
+    </string>
+    <string name="hello_world">Olá, mundo!</string>
+</resources>
