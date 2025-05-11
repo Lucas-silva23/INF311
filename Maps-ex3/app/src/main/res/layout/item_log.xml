@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/borda_verde">
+
+    <TextView
+        android:id="@+id/textLog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#228B22"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:fontFamily="monospace"/>
+</LinearLayout>
