@@ -11,9 +11,14 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.os.Build;
+
 
 public class MainActivity extends Activity implements SensorEventListener {
 
@@ -36,8 +41,8 @@ public class MainActivity extends Activity implements SensorEventListener {
 
         switchLanterna = findViewById(R.id.switchLanterna);
         switchMotor = findViewById(R.id.switchMotor);
-        switchLanterna.setEnabled(false);
-        switchMotor.setEnabled(false);
+        switchLanterna.setEnabled(true); // permite interação
+        switchMotor.setEnabled(true);
 
         Button btnClassificar = findViewById(R.id.btnClassificar);
         btnClassificar.setOnClickListener(v -> enviarLeituras());
@@ -45,11 +50,35 @@ public class MainActivity extends Activity implements SensorEventListener {
         lanternaHelper = new LanternaHelper(this);
         motorHelper = new MotorHelper(this);
 
+        // Listeners para switches
+        switchLanterna.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                lanternaHelper.ligar();
+            } else {
+                lanternaHelper.desligar();
+            }
+        });
+
+        switchMotor.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                motorHelper.iniciarVibracao();
+            } else {
+                motorHelper.pararVibracao();
+            }
+        });
+
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         proxSensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         luzSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 
-        //registerReceiver(classificacaoReceiver, new IntentFilter("com.example.RETORNO_CLASSIFICACAO"));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            registerReceiver(classificacaoReceiver,
+                    new IntentFilter("com.example.RETORNO_CLASSIFICACAO"),
+                    Context.RECEIVER_EXPORTED);
+        } else {
+            registerReceiver(classificacaoReceiver,
+                    new IntentFilter("com.example.RETORNO_CLASSIFICACAO"));
+        }
     }
 
     private void enviarLeituras() {

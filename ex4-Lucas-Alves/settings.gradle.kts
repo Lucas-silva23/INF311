@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "pratica4LucasAlves"
 include(":app")
- 
+include(":app_b")
