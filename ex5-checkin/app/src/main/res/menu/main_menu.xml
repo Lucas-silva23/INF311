@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/mapa_checkin"
+        android:title="Mapa de Check-in"
+        app:showAsAction="never"/>
+    <item android:id="@+id/gestao_checkin"
+        android:title="Gestão de Check-in"
+        app:showAsAction="never"/>
+    <item android:id="@+id/relatorio"
+        android:title="Lugares mais visitados"
+        app:showAsAction="never"/>
+</menu>
